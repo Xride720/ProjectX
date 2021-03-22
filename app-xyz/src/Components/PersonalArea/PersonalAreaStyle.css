@@ -1,0 +1,104 @@
+.personal__wrap {
+    position: absolute;
+    z-index: 110;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.171);
+    display: none;
+    justify-content: flex-end;
+    transform: translateX(100%);
+    transition: opacity .9s ease;
+    opacity: 0;
+}
+.personal__wrap.visible {
+    transform: translateX(0);
+    opacity: 1;
+
+}
+
+.personal__wrap .p-area__cont {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    max-width: 600px;
+    height: calc(100vh - 6rem);
+    margin: 1rem;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.466);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.personal__wrap.visible .p-area__cont {
+    
+}
+
+.personal__wrap .p-area__title {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 3rem;
+}
+.personal__wrap .change__block {
+    width: 70%;
+    min-width: 320px;
+}
+.personal__wrap .change__block .login__cont,
+.personal__wrap .change__block .email__cont,
+.personal__wrap .change__block .password__cont,
+.personal__wrap .change__block .password-repeat__cont,
+.personal__wrap .save__block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;    
+    position: relative;
+}
+
+.personal__wrap .change__block .email__cont {
+    position: relative;
+}
+
+.personal__wrap .change__block .notice { 
+    position: absolute;
+    top: 2rem;
+    right: 0px;
+    font-size: 12px;
+}
+.personal__wrap .save__block {
+    width: 90%;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    margin-bottom: 0;
+}
+.personal__wrap .save__block .password__cont {
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    width: 70%;
+}
+.personal__wrap .save__block .password__cont .title {
+    
+}
+.personal__wrap .save__block .save__btn {
+    margin-left: 1rem;
+    width: 35%;
+} 
+.personal__wrap .save__block .save__btn.success {
+    color: green;
+    font-weight: 700;
+}
+
+.personal__wrap .save__block.disable * {
+    opacity: 0.3;
+    cursor: not-allowed;
+} 
+
+.personal__wrap .error_wrong-email {
+    line-height: 0;
+    position: absolute;
+    top: 2.5rem;
+    right: 0;
+    font-size: 12px;
+}

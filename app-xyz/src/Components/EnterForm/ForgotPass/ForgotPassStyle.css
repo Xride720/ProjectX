@@ -1,0 +1,95 @@
+.recovery-pass {
+    display: none;
+    transition: all .5s ease;
+}
+.recovery-pass .mail__sent {
+    display: none;
+    color: green;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+    margin-top: 3rem;
+}
+
+.recovery-pass__email {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    padding: 10px;
+    position: relative;
+}
+
+.recovery-pass__email *{
+    text-align: center;
+    margin: 20px 0 15px 0;
+}
+
+.recovery-pass__email #email{
+    /* font-size: 18px; */
+    text-align: left;
+    position: relative;
+    z-index: 10;
+}
+
+.recovery-pass__email .send__email {
+    cursor: pointer;
+    box-shadow: 0 0 5px 3px #000000ad;
+    background: rgba(0, 17, 255, 0.397);
+    border-radius: 0.3rem;
+    border: 1px solid #fff;
+    padding: 0.2rem;
+    line-height: 24px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.recovery-pass__email .send__email:hover {
+    /* transform: translateY(-1px); */
+    background: rgba(0, 13, 197, 0.616);
+}
+.recovery-pass__email .send__email:active {
+    transform: translateY(1px);
+}
+
+.back__btn {
+    position: absolute;
+    z-index: 20;
+    top: 0rem;
+    left: -0.5rem;
+    padding: 5px 10px 5px 30px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.281);
+    border-bottom-right-radius: 10px;
+    transition: all .3s ease;
+}
+.back__btn:hover{
+    background: rgba(0, 0, 0, 0.144);
+}
+
+.back__btn::before {
+    content: '';
+    position: absolute;
+    top: 0.7rem;
+    left: 1rem;
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+    transform: rotate(-45deg);
+    
+}
+
+.error_wrong-email {
+    position: relative;
+    z-index: 1;
+    color: red;
+    transform: translateY(-35px);
+    transition: all 0.5s ease;
+    margin: 0;
+}
+
+.error_wrong-email.active {
+    transform: translateY(0);
+}

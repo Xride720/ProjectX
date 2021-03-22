@@ -1,0 +1,70 @@
+.registration__form-cont {
+    display: none;
+    transition: all .5s ease;
+}
+.registration__form .back__btn {
+    top: 0;
+}
+.registration__form {
+    display: flex;    
+    flex-flow: column;
+}
+
+.registration__form > *:not(:last-child) {
+    margin-bottom: 1rem;
+}
+.registration__form .input__field {
+    width: calc(100% - 1.7rem);
+}
+p {
+    margin: 0;
+}
+
+.registration__form .title {
+    margin-bottom: .5rem;
+}
+.registration__form .registration__btn {
+    text-align: center;
+    padding: .3rem .7rem;
+    transition: all .5s ease;
+}
+
+.registration__form .registration__select-role {
+    display: flex;
+    justify-content: space-around;
+}
+.registration__form .registration__select-role * {
+    cursor: pointer;
+}
+
+.registration__form-cont .error_wrong-email {
+    line-height: 0;
+}
+.registration__form-cont .error_wrong-email.active {
+    
+}
+
+.registration__form .pass__input-cont {
+    position: relative;
+}
+
+
+
+.registration__form .pass__title {
+    position: relative;
+}
+
+.registration__form .pass__title .notice {
+    position: absolute;
+    right: 0;
+    top: .15rem;
+    font-size: 14px;
+}
+.registration__form-cont .registration-success {
+    display: none;
+    color: green;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+    margin-top: 3rem;
+}

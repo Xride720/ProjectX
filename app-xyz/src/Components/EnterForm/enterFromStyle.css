@@ -1,0 +1,72 @@
+.enter__form {
+    position: absolute;
+    top: 6rem;
+    left: calc(50vw - 150px);
+    width: 300px;
+    height: auto;
+    min-height: 200px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.466);
+    padding: 2rem;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 10;
+    background: #fff;
+}
+
+.enter__form-container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    overflow: hidden;
+    transition: all .5s ease;
+}
+
+.enter__email, 
+.enter__password {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 20px 10px 20px;
+}
+
+.enter__password .input__field,
+.enter__email .input__field {
+    max-width: 65%;
+}
+
+.enter__btn {
+}
+
+.enter__other {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0.5rem 0;
+    background: rgba(38, 0, 255, 0.397);
+}
+
+.other__registration,
+.other__forgot-pass {
+    cursor: pointer;
+}
+
+.other__forgot-pass {
+    
+}
+
+.enter__form-container .error__auth {
+    color: rgb(185, 0, 0);
+    opacity: 0;
+}
+.enter__form .success__auth {
+    color: green;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+    line-height: 12rem;
+    display: none;
+}

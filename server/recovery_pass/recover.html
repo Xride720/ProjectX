@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Восстановление пароля</title>
+    <style>
+        .update__pass-cont {
+            position: absolute;
+            top: 6rem;
+            left: calc(50vw - 150px - 2rem);
+            width: 300px;
+            height: auto;
+            min-height: 200px;
+            box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.466);
+            padding: 2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            z-index: 10;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .update__pass-first {
+        }
+        .first__cont {
+        }
+        .first__title,
+        .repeat__title {
+            text-align: center;
+        }
+        .first__input,
+        .repeat__input {
+            outline-style: none;
+            padding: .3rem .7rem;
+            font-size: 16px;
+            position: relative;
+            transition: all .3s ease;
+            z-index: 10;
+            margin: 1rem 0;
+        }
+        .first__input-cont,
+        .repeat__input-cont {
+            position: relative;
+        }
+        .notice {
+            display: block;
+            position: absolute;
+            top: -.3rem;
+            right: 0;
+            font-size: 13px;
+        }
+        
+        .next__btn {
+            width: 90%;
+            box-shadow: 0 0 5px 1px #000;
+            border-radius: 2px;
+            text-align: center;
+            padding: 0.3rem;
+            margin: 10px auto;
+            cursor: pointer;
+        }
+        .update__pass-repeat {
+            display: none;
+        }
+        .repeat__cont {
+        }
+        .repeat__title {
+        }
+        .repeat__input {
+        }
+        .update__pass-error {
+        }
+        .update__pass-success {
+            display: none;
+            color: green;
+            font-size: 16px;
+        }
+        .error {
+            box-shadow: 0 0 5px 1px rgb(185, 0, 0) !important;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="update__pass-cont">
+        <div class="update__pass-first">
+            <label class="first__cont">
+                <p class="first__title">Введите новый пароль</p>
+                <div class="first__input-cont">
+                    <input type="password" class="first__input">
+                    <div class="notice"></div>
+                </div>                
+            </label>            
+            <div class="next__btn">Далее</div>
+        </div>
+        <div class="update__pass-repeat">
+            <label class="repeat__cont">
+                <p class="repeat__title">Повторите новый пароль</p>
+                <div class="repeat__input-cont">
+                    <input type="password" class="repeat__input">
+                    <div class="notice"></div>
+                </div>    
+            </label>
+            <div class="next__btn">Обновить пароль</div>             
+        </div>
+        <div class="update__pass-success">Пароль успешно обновлён!</div>
+    </div>
+    
+    <script>
+        console.log(window.location.href);
+        let id = window.location.href.split('?id');
+        if (id.length != 1) { 
+            id = id[1].split('=')[1];
+            let reg_pass = /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*.-]{8,}/g;
+            $('.update__pass-first .next__btn').on('click', function(e) {                
+                
+                let pass = $('.first__input').val(),
+                    pass_el = $('.first__input');
+                
+                if (pass === '') {                    
+                    errorEl(pass_el);
+                    return true;
+                } else if (!pass.match(reg_pass)) {
+                    errorEl(pass_el);
+                    return true;
+                } 
+                $(this).parent().hide();
+                $(this).closest('.update__pass-cont').find('.update__pass-repeat').show();
+                
+            });
+            
+            $('.first__input').on('input', function(e) {
+                let val = event.target.value,
+                    notice = event.target.closest('.first__input-cont').querySelector('.notice');
+                if (val == '') notice.textContent = '';
+                else if (val.match(reg_pass)) {
+                    notice.textContent = 'Надёжный пароль';
+                    notice.style.color = "green";
+                } else {
+                    notice.textContent = 'Небезопасный пароль';
+                    notice.style.color = "red";
+                }
+            });
+        
+            $('.repeat__input').on('input', function(e) {
+                let val = $(this).val(),
+                    notice = $(this).closest('.repeat__input-cont').find('.notice'),
+                    first = $('.first__input').val();
+                console.log(val);
+                console.log(first);
+                console.log(val == first);
+                if (val == '' || val == first) notice.text('');
+                if (val != first) {
+                    notice.text('Пароли не совпадают');
+                    notice.css('color','red');
+                } 
+            });
+
+            $('.update__pass-repeat .next__btn').on('click', async function(e) {
+                let val = $('.repeat__input').val(),
+                    first = $('.first__input').val();
+                if (val != first) {
+                    errorEl($('.repeat__input'));
+                } else {
+                    let bodyReq = {
+                            "pass": val,
+                            "id": id
+                        };
+                    const data = await request('/api/update_pass', 'POST', bodyReq);
+                    if (data.success) {
+                        $(this).parent().hide();
+                        $(this).closest('.update__pass-cont').find('.update__pass-success').show();
+                        
+                        setTimeout(() => {
+                            window.location.href = '/';
+                        }, 3000);
+                    }
+                }
+                
+            });
+            function errorEl(el) {
+                el.addClass('error');
+                setTimeout(() => {
+                    el.removeClass('error');
+                }, 1000);
+            }
+            async function request(url, method = 'GET', data = null) {
+                try {
+                    const headers = {};
+                    let body;
+                    if (data) {
+                        headers['Content-Type'] = 'application/json';
+                        body = JSON.stringify(data);
+                    }
+                    const response = await fetch(url, {
+                        method,
+                        headers,
+                        body
+                    });
+                    return response.json();
+                } catch (e) {
+                    console.warn('Error ', e.message);
+                }
+            }
+        } else {
+            $('.update__pass-cont').html('<h1>Упс... Что то пошло не так =( </h1>')
+        }
+    </script>
+</body>
+</html>
