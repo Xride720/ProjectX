@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import AppBarNav from './AppBarNav/AppBarNav';
 import './AppBarStyle.css';
 import CommonClass from '../../WorkClass/CommonClass';
+import Button from '../Button/Button';
+import {authChangeQuit} from '../../redux/actions/authActions';
 const CC = new CommonClass();
 
 export default class AppBar extends Component {
@@ -11,50 +13,48 @@ export default class AppBar extends Component {
 
 
         };
-    }
-
-    
-
-    openEnterForm(e) {
-        e.stopPropagation();
-        let under = e.target.closest('.App').querySelector('.enter__wrap');
-        
-        CC.show(under);
-        CC.blurOn(e.target.closest('.App .wrapper'));        
+        this.logout = this.logout.bind(this);
+        this.openPersonalArea = this.openPersonalArea.bind(this);
     }
 
     logout() {
-        let auth_block = document.querySelector('.auth__block'),
-            login_btn = auth_block.querySelector('.login__btn'),
-            auth_info = auth_block.querySelector('.auth__block-info'),
-            p_area_btn = auth_block.querySelector('.p-area__btn');
-        auth_info.classList.add('hidden');
-        p_area_btn.classList.add('hidden');
-        CC.show(login_btn);
-        auth_block.dataset.value = '';
-        auth_info.querySelector('.name').textContent = '';
+        this.props.dispatch(authChangeQuit());
     } 
 
     openPersonalArea(e) {
-        CC.blurOn(e.target.closest('.App .wrapper')); 
-        e.target.closest('.App').querySelector('.personal__wrap').style.display = 'flex';
-        setTimeout(() => {e.target.closest('.App').querySelector('.personal__wrap').classList.add('visible')});
+        this.props.dispatch({
+            type: 'OPEN_PA',
+            stage: 1
+        });
+        setTimeout(() => {
+            this.props.dispatch({
+                type: 'OPEN_PA',
+                stage: 2
+            });
+        });
+        // e.target.closest('.App').querySelector('.personal__wrap').style.display = 'flex';
+        // setTimeout(() => {e.target.closest('.App').querySelector('.personal__wrap').classList.add('visible')});
         
     }
 
     render() {
+        let is_auth = this.props.state.is_auth;
         return (
             <div className="appbar__cont">
                 <AppBarNav />
-                <div className="auth__block" data-value="">
-                    <div className="p-area__btn default__btn hidden" onClick={this.openPersonalArea}>Личный кабинет</div>
-                    <div className="login__btn default__btn" onClick={this.openEnterForm}>Войти</div>
-                    <div className="auth__block-info hidden">
-                        <p className="auth__name">Вы вошли как: <span className="name"></span></p>
-                        <div className="logout__btn default__btn"
-                            onClick={this.logout}>
-                            Выход
-                        </div>
+                <div className="auth__block">
+                    <Button text="Личный кабинет" 
+                            type="p-area__btn" 
+                            handler={this.openPersonalArea}
+                            hidden={!(is_auth)}
+                            />
+                    <Button text="Войти" 
+                            type="login__btn"
+                            hidden={is_auth} />
+                    
+                    <div className={"auth__block-info " + (is_auth ? '' : ' hidden')}>
+                        <p className="auth__name">Вы вошли как: <span className="name">{this.props.state.login}</span></p>
+                        <Button text="Выход" type="logout__btn" handler={this.logout}/>
                     </div>                     
                 </div>
                 

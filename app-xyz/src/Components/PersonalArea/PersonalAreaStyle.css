@@ -15,14 +15,17 @@
 .personal__wrap.visible {
     transform: translateX(0);
     opacity: 1;
+}
+.personal__wrap.pre-visible {
+    display: flex;
 
 }
-
 .personal__wrap .p-area__cont {
     position: relative;
     background: #fff;
     width: 100%;
     max-width: 600px;
+    min-height: 300px;
     height: calc(100vh - 6rem);
     margin: 1rem;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.466);
@@ -65,6 +68,12 @@
     right: 0px;
     font-size: 12px;
 }
+.personal__wrap .change__block .notice.valid { 
+    color: green;
+}
+.personal__wrap .change__block .notice.novalid { 
+    color: red;
+}
 .personal__wrap .save__block {
     width: 90%;
     position: absolute;
@@ -88,6 +97,9 @@
 .personal__wrap .save__block .save__btn.success {
     color: green;
     font-weight: 700;
+}
+.personal__wrap .save__block .save__btn.error {
+    color: red;
 }
 
 .personal__wrap .save__block.disable * {

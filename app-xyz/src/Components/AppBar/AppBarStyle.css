@@ -14,26 +14,6 @@
     align-items: center;
     min-width: 300px;
 }
-.appbar__cont .login__btn,
-.appbar__cont .logout__btn,
-.appbar__cont .p-area__btn {
-    margin-right: 1rem;
-    padding: .4rem .5rem .5rem .5rem;
-    border: 2px solid #1b91ff;
-    color: #1b91ff;
-    font-weight: 500;
-    background: #fff;
-    box-shadow: 0 0 5px 1px #1b91ff;
-    border-radius: 7px;
-    transition: all .3s ease;
-}
-.appbar__cont .login__btn {
-    width: 50%;
-}
-.appbar__cont .login__btn:hover,
-.appbar__cont .p-area__btn:hover {
-    box-shadow: 0 0 7px 1px #fff;
-} 
 
 .appbar__cont .auth__block-info {
     display: flex;
@@ -41,8 +21,7 @@
     align-items: center;
     width: 100%;
 }
-.appbar__cont .auth__name,
-.appbar__cont .logout__btn {
+.appbar__cont .auth__name {
     margin-right: 1rem;
     width: fit-content;
     cursor: default;
@@ -52,11 +31,4 @@
     color: #1b91ff;
 }
 
-.appbar__cont .logout__btn {
-    border: 2px solid #d1000033;
-    color: #c6c6c6;
-    font-weight: 500;
-    background: rgb(97, 97, 97);
-    box-shadow: 0 0 5px 1px #c20000;
-    cursor: pointer;
-}
+

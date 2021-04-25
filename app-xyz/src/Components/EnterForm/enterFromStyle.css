@@ -52,6 +52,8 @@
 .other__registration,
 .other__forgot-pass {
     cursor: pointer;
+    text-decoration: none;
+    color: #000;
 }
 
 .other__forgot-pass {
@@ -62,11 +64,16 @@
     color: rgb(185, 0, 0);
     opacity: 0;
 }
+.enter__form-container .error__auth.visible {
+    opacity: 1;
+}
 .enter__form .success__auth {
     color: green;
     text-align: center;
     width: 100%;
     font-size: 18px;
     line-height: 12rem;
-    display: none;
+}
+.enter__form .loader {
+    background: #fff url('../images/loader.gif') no-repeat center;
 }

@@ -1,5 +1,4 @@
 .registration__form-cont {
-    display: none;
     transition: all .5s ease;
 }
 .registration__form .back__btn {
@@ -23,11 +22,7 @@ p {
 .registration__form .title {
     margin-bottom: .5rem;
 }
-.registration__form .registration__btn {
-    text-align: center;
-    padding: .3rem .7rem;
-    transition: all .5s ease;
-}
+
 
 .registration__form .registration__select-role {
     display: flex;

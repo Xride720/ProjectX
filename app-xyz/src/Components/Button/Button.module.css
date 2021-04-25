@@ -1,0 +1,49 @@
+.send__email {
+    background: rgba(0, 17, 255, 0.397);
+    border: 1px solid #fff;
+    padding: 0.2rem;
+    line-height: 24px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.send__email:hover {
+    background: rgba(0, 13, 197, 0.616);
+}
+
+
+.registration__btn {
+    text-align: center;
+    padding: .3rem .7rem;
+}
+
+.login__btn,
+.logout__btn,
+.p-area__btn {
+    margin-right: 1rem;
+    padding: .4rem .5rem .5rem .5rem;
+    border: 2px solid #1b91ff;
+    color: #1b91ff;
+    font-weight: 500;
+    background: #fff;
+    box-shadow: 0 0 5px 1px #1b91ff;
+    border-radius: 7px;
+}
+
+.login__btn {
+    width: 50%;
+}
+.login__btn:hover,
+.p-area__btn:hover {
+    box-shadow: 0 0 7px 1px #fff;
+} 
+.logout__btn {
+    width: fit-content;
+    border: 2px solid #d1000033;
+    color: #c6c6c6;
+    background: rgb(97, 97, 97);
+    box-shadow: 0 0 5px 1px #c20000;
+}

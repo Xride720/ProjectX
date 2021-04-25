@@ -1,5 +1,4 @@
 .recovery-pass {
-    display: none;
     transition: all .5s ease;
 }
 .recovery-pass .mail__sent {
@@ -31,27 +30,9 @@
     z-index: 10;
 }
 
-.recovery-pass__email .send__email {
-    cursor: pointer;
-    box-shadow: 0 0 5px 3px #000000ad;
-    background: rgba(0, 17, 255, 0.397);
-    border-radius: 0.3rem;
-    border: 1px solid #fff;
-    padding: 0.2rem;
-    line-height: 24px;
-    letter-spacing: 1px;
-    font-weight: 600;
-    color: #fff;
-    transition: all 0.3s ease;
-}
 
-.recovery-pass__email .send__email:hover {
-    /* transform: translateY(-1px); */
-    background: rgba(0, 13, 197, 0.616);
-}
-.recovery-pass__email .send__email:active {
-    transform: translateY(1px);
-}
+
+
 
 .back__btn {
     position: absolute;
@@ -62,6 +43,8 @@
     cursor: pointer;
     background: rgba(0, 0, 0, 0.281);
     border-bottom-right-radius: 10px;
+    text-decoration: none;
+    color: #000;
     transition: all .3s ease;
 }
 .back__btn:hover{

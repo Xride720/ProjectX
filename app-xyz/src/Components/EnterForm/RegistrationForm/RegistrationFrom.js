@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './RegistrationFromStyle.css';
 import CommonClass from '../../../WorkClass/CommonClass';
+import Button from '../../Button/Button';
+import { NavLink } from 'react-router-dom';
 const CC = new CommonClass();
 
 export default class RegistrationFrom extends Component {
@@ -55,7 +57,7 @@ export default class RegistrationFrom extends Component {
             document.querySelector('.registration__form-cont .registration-success').style.display = 'block';
             
             setTimeout(() => {
-                CC.backToEnter();
+                // CC.backToEnter();
                 document.querySelector('.registration__form.cont').style.display = 'flex';
                 document.querySelector('.registration__form-cont .registration-success').style.display = 'none';
             }, 2000);
@@ -90,10 +92,8 @@ export default class RegistrationFrom extends Component {
         return (
             <div className="registration__form-cont">                
                 <div className="registration__form cont">
-                    <div className="back__btn"
-                        onClick = {CC.backToEnter}>
-                        Назад
-                    </div>
+                    <NavLink to="/entry" className="back__btn">Назад</NavLink>
+
                     <div className="registration__name">
                         <p className="title">Имя</p>
                         <input type="text" className="name__input input__field"/>
@@ -138,10 +138,7 @@ export default class RegistrationFrom extends Component {
                             </label>
                         </div>
                     </div>
-                    <div className="registration__btn default__btn"
-                        onClick = {this.handleClickRegistration}>
-                        Зарегистрироваться
-                    </div>
+                    <Button text="Зарегистрироваться" type="registration__btn" handler={this.handleClickRegistration}/>
                 </div> 
                 <p className="registration-success">Регистрация прошла успешно! <br/> На указанный e-mail отправлено письмо с интрукциями для активации аккаунта.</p>
             </div>

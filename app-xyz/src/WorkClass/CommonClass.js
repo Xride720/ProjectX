@@ -13,18 +13,13 @@ export default class CommonClass {
         }, 1000);
     }
 
-    validateElEmail(el) {
-        let email = el.value,
-            regexp = /[-.\w]+@([\w-]+\.)+[\w-]+/g;
+    validateEmail(email) {
+        let regexp = /[-.\w]+@([\w-]+\.)+[\w-]+/g;
         
-        if (!email.match(regexp)) {
-            el.closest('.cont').querySelector('.error_wrong-email').classList.add('active');
-            setTimeout(() => {
-                el.closest('.cont').querySelector('.error_wrong-email').classList.remove('active');
-            }, 1000);
-            return true;
-        }
-        return false;
+        if (!email.match(regexp)) 
+            return false;
+        
+        return true;
     }
 
     async request(url, method = 'GET', data = null) {
@@ -127,17 +122,38 @@ export default class CommonClass {
         event.target.closest('.pass__input-cont').querySelector('.input__field').type = type;
     }
 
-    checkPassValid(event) {
+    // checkPassValid(event) {
         
-        let val = event.target.value,
-            notice = event.target.closest('.pass__cont').querySelector('.notice');
-        if (val == '') notice.textContent = '';
-        else if (val.match(this.reg_pass)) {
-            notice.textContent = 'Надёжный пароль';
-            notice.style.color = "green";
+    //     let val = event.target.value,
+    //         notice = event.target.closest('.pass__cont').querySelector('.notice');
+    //     if (val == '') notice.textContent = '';
+    //     else if (val.match(this.reg_pass)) {
+    //         notice.textContent = 'Надёжный пароль';
+    //         notice.style.color = "green";
+    //     } else {
+    //         notice.textContent = 'Небезопасный пароль';
+    //         notice.style.color = "red";
+    //     }
+    // }
+    checkPassValid(val) {
+        let res = {
+            notice_class: '',
+            notice_text: '',
+            valid_pass: false
+        };
+        if (val == '') {
+            res.notice_class = '';
+            res.notice_text = '';
+            res.valid_pass = true;
+        } else if (val.match(this.reg_pass)) {
+            res.notice_class = ' valid ';
+            res.notice_text = 'Надёжный пароль';
+            res.valid_pass = true;
         } else {
-            notice.textContent = 'Небезопасный пароль';
-            notice.style.color = "red";
+            res.notice_class = ' novalid ';
+            res.notice_text = 'Небезопасный пароль';
+            res.valid_pass = false;
         }
+        return res;
     }
 }
