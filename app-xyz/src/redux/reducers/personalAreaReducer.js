@@ -14,8 +14,8 @@ const CHANGE_USER_DATA_ERROR_PASSWORD = 'CHANGE_USER_DATA_ERROR_PASSWORD';
 
 
 let  initialState = {
-    pre_visible: true,
-    visible: true,
+    pre_visible: false,
+    visible: false,
     prev_value : {
         login: '',
         email: '',

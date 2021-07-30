@@ -17,7 +17,9 @@ export default class AppBar extends Component {
         this.openPersonalArea = this.openPersonalArea.bind(this);
     }
 
-    logout() {
+    async logout() {
+        const resp = await CC.request('/api/logout', 'POST', {id : this.props.state.user_id});
+        console.log(resp);
         this.props.dispatch(authChangeQuit());
     } 
 
@@ -32,9 +34,6 @@ export default class AppBar extends Component {
                 stage: 2
             });
         });
-        // e.target.closest('.App').querySelector('.personal__wrap').style.display = 'flex';
-        // setTimeout(() => {e.target.closest('.App').querySelector('.personal__wrap').classList.add('visible')});
-        
     }
 
     render() {

@@ -44,8 +44,9 @@ const enterFormReducer = (state = initialState, action) => {
             state.loader = false;
             let resp = action.resp;
             if (resp.success) {
-                if (action.stage == 1)
+                if (action.stage == 1) {
                     state.success_auth = true;
+                }
                 else if (action.stage == 2) {
                     action.history.replace('/');
                     state.visible = false;

@@ -43,11 +43,59 @@ const time_to_activate = 3600; // Время на активацию в секу
                 success: rows.length == 1 ? true : false,
                 data: rows[0]
             }
-            res.status(200).json(respBody);
+            conn.query(`UPDATE  ${db_table} SET is_auth = TRUE WHERE email = '${email}' AND password = '${password}'`, function (err, rows, fields) {
+                if (err) {
+                    conn.end();
+                    conn = mysql.createConnection(db_auth);
+                    conn.connect();
+                    throw err;
+                }
+                
+                res.status(200).json(respBody);
+            });
+            
             
         }); 
+    });
+
+// Logout
+    app.post('/api/logout', (req, res) => {
+        let id = req.body.id;
+
+        conn.query(`UPDATE  ${db_table} SET is_auth = FALSE WHERE id = '${id}'`, function (err, rows, fields) {
+            if (err) {
+                conn.end();
+                conn = mysql.createConnection(db_auth);
+                conn.connect();
+                throw err;
+            }
+            let respBody = {
+                success: true
+            };
+            
+            res.status(200).json(respBody);
+        });
         
-        
+    });
+
+// Check auth
+    app.post('/api/check_auth', (req, res) => {
+        let id = req.body.id;
+
+        conn.query(`SELECT * FROM ${db_table} WHERE id = '${id}' AND is_auth = TRUE`, function (err, rows, fields) {
+            if (err) {
+                conn.end();
+                conn = mysql.createConnection(db_auth);
+                conn.connect();
+                throw err;
+            }
+            console.log(rows);
+            let respBody = {
+                success: rows.length == 1 ? true : false,
+                data: rows[0]
+            }
+            res.status(200).json(respBody);
+        }); 
     });
 
 // Registration
